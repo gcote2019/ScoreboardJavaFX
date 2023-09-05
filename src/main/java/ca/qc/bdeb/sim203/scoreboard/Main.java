@@ -1,10 +1,14 @@
 package ca.qc.bdeb.sim203.scoreboard;
 
 import javafx.application.Application;
+import javafx.geometry.Orientation;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Separator;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -14,6 +18,8 @@ public class Main extends Application {
     }
 
     private final static String SCORE = "Score : ";
+    private final static int TAILLE_POLICE_NOMS = 32;
+    private final static int TAILLE_POLICE_SCORES = 24;
     private int scoreCanadiens = 0;
     private int scoreLightnings = 0;
     private Text nomCanadiens;
@@ -28,10 +34,13 @@ public class Main extends Application {
         Scene scene = new Scene(root, 400, 150);
         VBox vBox = new VBox();
         root.getChildren().add(vBox);
+        root.setAlignment(Pos.CENTER);
+        root.setSpacing(15);
+        vBox.setAlignment(Pos.CENTER_RIGHT);
 
-        nomCanadiens = new Text("Canadiens");
+        nomCanadiens = creerText("Canadiens", TAILLE_POLICE_NOMS);
         vBox.getChildren().add(nomCanadiens);
-        titreScoreCanadiens = new Text(SCORE + 0);
+        titreScoreCanadiens = creerText(SCORE + 0, TAILLE_POLICE_SCORES);
         vBox.getChildren().add(titreScoreCanadiens);
         boutonCanadiens = new Button("Compter un point");
         vBox.getChildren().add(boutonCanadiens);
@@ -39,11 +48,13 @@ public class Main extends Application {
             augmenterScoreCanadiens();
         });
 
+        root.getChildren().add(new Separator(Orientation.VERTICAL));
         vBox = new VBox();
         root.getChildren().add(vBox);
-        nomLightnings = new Text("Lightnings");
+        vBox.setAlignment(Pos.CENTER_LEFT);
+        nomLightnings = creerText("Lightnings", TAILLE_POLICE_NOMS);
         vBox.getChildren().add(nomLightnings);
-        titreScoreLightnings = new Text(SCORE + 0);
+        titreScoreLightnings = creerText(SCORE + 0, TAILLE_POLICE_SCORES);
         vBox.getChildren().add(titreScoreLightnings);
         boutonLightnings = new Button("Compter un point");
         vBox.getChildren().add(boutonLightnings);
@@ -56,6 +67,12 @@ public class Main extends Application {
 
     }
 
+    private Text creerText(String texte, int taillePolice) {
+        Font font = Font.font(taillePolice);
+        Text text = new Text(texte);
+        text.setFont(font);
+        return text;
+    }
     private void augmenterScoreCanadiens() {
         scoreCanadiens++;
         titreScoreCanadiens.setText(SCORE + scoreCanadiens);
