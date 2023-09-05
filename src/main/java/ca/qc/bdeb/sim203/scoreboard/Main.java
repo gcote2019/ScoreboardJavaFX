@@ -13,10 +13,14 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.util.Random;
+
 public class Main extends Application {
     public static void main(String[] args) {
         launch(args);
     }
+    public static final String[] NOMS = {"Canadiens", "Lightnings", "Islanders", "Bruins", "Penguins"};
+    private static final Random generateur = new Random();
 
     private final static String SCORE = "Score : ";
     private final static int TAILLE_POLICE_NOMS = 32;
@@ -72,6 +76,9 @@ public class Main extends Application {
         Font font = Font.font(taillePolice);
         Text text = new Text(texte);
         text.setFont(font);
+        text.setOnMouseClicked((mouseEvent) -> {
+            text.setText(obtenirNom());
+        });
         return text;
     }
     private void augmenterScoreCanadiens() {
@@ -95,6 +102,10 @@ public class Main extends Application {
             lightnings = Color.GREEN;
         nomCanadiens.setFill(canadiens);
         nomLightnings.setFill(lightnings);
+    }
+
+    private static String obtenirNom() {
+        return NOMS[generateur.nextInt(NOMS.length)];
     }
 
 }
