@@ -8,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Separator;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -76,12 +77,24 @@ public class Main extends Application {
     private void augmenterScoreCanadiens() {
         scoreCanadiens++;
         titreScoreCanadiens.setText(SCORE + scoreCanadiens);
-
+        changerLesCouleurs();
     }
 
     private void augmenterScoreLightnings() {
         scoreLightnings++;
         titreScoreLightnings.setText(SCORE + scoreLightnings);
+        changerLesCouleurs();
+    }
+
+    private void changerLesCouleurs() {
+        Color canadiens = Color.BLACK;
+        Color lightnings = Color.BLACK;
+        if (scoreCanadiens > scoreLightnings)
+            canadiens = Color.GREEN;
+        else if (scoreCanadiens < scoreLightnings)
+            lightnings = Color.GREEN;
+        nomCanadiens.setFill(canadiens);
+        nomLightnings.setFill(lightnings);
     }
 
 }
