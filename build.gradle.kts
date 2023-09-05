@@ -49,6 +49,6 @@ tasks {
 }
 
 application {
-    mainClass.set("ca.qc.bdeb.sim203.scoreboard.Main")
+    mainClass.set("ca.qc.bdeb.sim203.scoreboard.MainMulti")
 }
 
