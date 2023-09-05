@@ -77,7 +77,11 @@ public class Main extends Application {
         Text text = new Text(texte);
         text.setFont(font);
         text.setOnMouseClicked((mouseEvent) -> {
-            text.setText(obtenirNom());
+            if (mouseEvent.getClickCount() == 2) {
+                text.setText(texte);
+            } else {
+                text.setText(obtenirNom());
+            }
         });
         return text;
     }
